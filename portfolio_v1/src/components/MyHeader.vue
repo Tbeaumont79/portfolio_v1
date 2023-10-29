@@ -11,19 +11,25 @@
           @click="mobileMenuOpen = true"
         >
           <span class="sr-only">Open main menu</span>
-          <Bars3Icon class="h-6 w-6" aria-hidden="true" />
+          <Bars3Icon
+            v-if="!mobileMenuOpen"
+            class="h-6 text-text w-6"
+            aria-hidden="true"
+          />
         </button>
       </div>
       <div class="hidden lg:flex lg:gap-x-12">
-        <a
+        <router-link
           v-for="item in navigation"
           :key="item.name"
-          :href="item.href"
-          class="text-sm font-semibold leading-6 text-white"
-          >{{ item.name }}</a
+          :to="item.href"
+          class="text-sm font-semibold leading-6 text-text hover:text-accent"
         >
+          {{ item.name }}
+        </router-link>
       </div>
     </nav>
+
     <Dialog
       as="div"
       class="lg:hidden"
@@ -37,7 +43,7 @@
         <div class="flex items-center justify-between">
           <button
             type="button"
-            class="-m-2.5 rounded-md p-2.5 text-gray-400"
+            class="-m-2.5 rounded-md p-2.5 text-text"
             @click="mobileMenuOpen = false"
           >
             <span class="sr-only">Close menu</span>
@@ -47,12 +53,12 @@
         <div class="mt-6 flow-root">
           <div class="-my-6 divide-y divide-gray-500/25">
             <div class="space-y-2 py-6">
-              <a
+              <router-link
                 v-for="item in navigation"
                 :key="item.name"
-                :href="item.href"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800"
-                >{{ item.name }}</a
+                :to="item.href"
+                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-text hover:bg-gray-800"
+                >{{ item.name }}</router-link
               >
             </div>
           </div>
@@ -70,8 +76,8 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
-  { name: 'Marketplace', href: '#' },
-  { name: 'Company', href: '#' }
+  { name: 'Works', href: '#' },
+  { name: 'Contact', href: '#' }
 ]
 
 const mobileMenuOpen = ref(false)

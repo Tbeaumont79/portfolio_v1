@@ -3,7 +3,10 @@ import MyHeader from './components/MyHeader.vue'
 </script>
 
 <template>
-  <MyHeader />
+  <div class="w-full bg-background">
+    <div class="container mx-auto">
+      <MyHeader />
+      <router-view></router-view>
+    </div>
+  </div>
 </template>
-
-<style scoped></style>
